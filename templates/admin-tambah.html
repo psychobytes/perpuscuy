@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+        <meta charset="utf-8">
+        <title>Tambah Data Pegawai</title>
+    </head>
+    <body style="background-color:#0B2447">
+        <nav class="navbar" style="background-color:#0B2447;">
+            <form class="form-inline">
+                <a style="color:#A5D7E8;" class="btn btn-floating m-1" href="/" role="button">Home</a>
+                <a style="color:#d4385f;" class="btn btn-floating m-1" href="/admin" role="button">Administrator</a>
+                <a style="color:#A5D7E8;" class="btn btn-floating m-1" href="/pegawai" role="button">Pegawai</a>
+            </form>
+            <a class="navbar-brand" style="color:#A5D7E8">
+                <b>PerpusCuy</b>
+                <img src="https://freesvg.org/img/reading.png" width="30" height="30" class="d-inline-block align-top">
+            </a>
+        </nav>
+
+        <div class="p-3 col-8 mx-auto" style="background-color:#19376D; color:#A5D7E8">
+            <h3 class="box-title p-3"> Tambah Data Pegawai </h3>
+            <form action="{{url_for('proses_tambah')}}" method="POST">
+                <div class="form-group p-3">
+                    <label>ID Pegawai</label>
+                    <input type="number" name="id_pegawai" class="form-control">
+                </div>
+                <div class="form-group p-3">
+                    <label>Nama Pegawai</label>
+                    <input type="text" name="nama_pegawai" class="form-control">
+                </div>
+                <div class="form-group p-3">
+                    <label>NIK Pegawai</label>
+                    <input type="text" name="nik_pegawai" class="form-control">
+                </div>
+                <div class="form-group p-3">
+                    <label>Alamat</label>
+                    <input type="text" name="alamat" class="form-control">
+                </div>
+                <div class="form-group p-3">
+                    <label>Jabatan</label>
+                    <input type="text" name="jabatan" class="form-control">
+                </div>
+                <div class="box-footer p-3">
+                    <button type="reset" class="btn btn-danger"> Cancel </button>
+                    <button type="submit" class="btn btn-success pull-right"> Submit </button>
+                </div>
+            </form>
+        </div>
+    
+        <footer class="text-center" style="background-color:#0B2447; color:#A5D7E8">
+            <div class="container">
+                <section class="p-3">
+                    <img src="https://freesvg.org/img/reading.png" width="30" height="30" class="d-inline-block align-top">
+                    <p>Perpuscuy, Aplikasi Manajemen data Perpustakaan.</p>
+                </section>
+            </div>
+            <div class="text-center p-3" style="background-color: #00000033;">
+                © 2023:
+            <a style="color:#d4385f">PerpusCuy</a>
+            </div>
+        </footer>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+    </body>
+</html>
+

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+        <title>Pinjam</title>
+    </head>
+
+    <body>
+        <nav class="navbar" style="background-color:#0B2447;">
+            <form class="form-inline">
+                <a style="color:#A5D7E8;" class="btn btn-floating m-1" href="/" role="button">Home</a>
+                <a style="color:#A5D7E8;" class="btn btn-floating m-1" href="/admin" role="button">Administrator</a>
+                <a style="color:#d4385f;" class="btn btn-floating m-1" href="/pegawai" role="button">Pegawai</a>
+            </form>
+            <a class="navbar-brand" style="color:#A5D7E8">
+                <b>PerpusCuy</b>
+                <img src="https://freesvg.org/img/reading.png" width="30" height="30" class="d-inline-block align-top">
+            </a>
+        </nav>
+
+        <div style="height:420px; background: url(https://images5.alphacoders.com/104/1043658.jpg); color:#A5D7E8">
+            <div class="col-10 p-3 mx-auto" align="center" style="background-color: rgba(0, 0, 0, 0.527);">
+                <h1>Daftar Pinjam Buku Perpustakaan</h1>
+                <p>Halaman Pegawai untuk manajemen Pinjam Buku</p>
+                <!-- form pinjam -->
+                <form action="/pinjamin" method="POST" class="p-3" style="background-color:#576bbc77;  max-width:400px; max-height:400px; border-radius: 5%;">
+                    <h4 class="p-3">Form Pinjam Buku</h4>
+                    <div>
+                        <table>
+                            <tr>
+                                <td>ID Member</td>
+                                <td>:</td>
+                                <td><input type="Number" style="background-color:#576CBC; color:#A5D7E8" class="form-control" required name="id_member"></td>
+                            </tr>
+                            <tr>
+                                <td>ID Buku</td>
+                                <td>:</td>
+                                <td><input type="Number" style="background-color:#576CBC; color:#A5D7E8" class="form-control" required name="id_buku"></td>
+                            </tr>
+                            <tr>
+                                <td>Tanggal</td>
+                                <td>:</td>
+                                <td><input type="Date" style="background-color:#576CBC; color:#A5D7E8" class="form-control" required name="tanggal_pinjam"></td>
+                            </tr>
+                            <tr>
+                                <td>Status</td>
+                                <td>:</td>
+                                <td>
+                                    <select type="text" style="background-color:#576CBC; color:#A5D7E8" class="form-control" required name="status">
+                                        <option>pinjam</option>
+                                        <option>kembalikan</option>
+                                    </select>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <button class="btn btn-success">
+                        Submit
+                    </button>
+                </form>
+            </div>
+        </div>
+        
+        <div style="background-color:#19376D; color:#A5D7E8;">
+            <div class="col-10 p-3 mx-auto" align="center">
+                <h4>Tabel Data Pinjam Buku</h4>
+                <div class="overflow-scroll" style="height: 500px;">
+                    <table class="table table-bordered table-hover" style="background-color:#19376D; color:#A5D7E8;">
+                        <thead>
+                        <tr style="background-color: #576CBC;">
+                            <th>ID Pinjam</th>
+                            <th>Member</th>
+                            <th>Buku</th>
+                            <th>Tanggal</th>
+                            <th>Status</th>
+                            <th>Detail</th>
+                            <th>Hapus</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for row in pinjamhtml %}
+                            <tr>
+                                <td>{{row.0}}</td>
+                                <td>{{row.1}}</td>
+                                <td>{{row.2}}</td>
+                                <td>{{row.3}}</td>
+                                <td>{{row.4}}</td>
+                                <td>
+                                    <a href="/pinjam-view/{{row.0}}" class="btn btn-info"> View </a>
+                                </td>
+                                <td>
+                                    <a href="/pinjam-hapus/{{row.0}}" class="btn btn-danger"
+                                    onclick="return confirm('yakin akan menghapus {{row.1}} ?')"> Hapus </a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <footer class="text-center" style="background-color:#0B2447; color:#A5D7E8">
+            <div class="container">
+                <section class="p-3">
+                    <img src="https://freesvg.org/img/reading.png" width="30" height="30" class="d-inline-block align-top">
+                    <p>Perpuscuy, Aplikasi Manajemen data Perpustakaan.</p>
+                </section>
+            </div>
+            <div class="text-center p-3" style="background-color: #00000033;">
+                © 2023:
+            <a style="color:#d4385f">PerpusCuy</a>
+            </div>
+        </footer>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+    </body>
+</html>
+    
+
