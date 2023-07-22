@@ -35,13 +35,12 @@ def login_proses():
         cur.execute('SELECT * FROM admin WHERE nama = %s AND nik = %s', (username, password,))
         # Fetch one record and return result
         account = cur.fetchone()
-        print(account)
         # If account exists in accounts table in out database
         if account:
             # Create session data, we can access this data in other routes
             session['loggedin'] = True
-            session['id'] = account[0]
-            session['username'] = account[1]
+            session['username'] = account[0]
+            session['password'] = account[1]
             # Redirect to home page
             return redirect(url_for('admin'))
         else:
@@ -54,8 +53,8 @@ def login_proses():
 def logout():
     # Remove session data, this will log the user out
    session.pop('loggedin', None)
-   session.pop('id', None)
    session.pop('username', None)
+   session.pop('password', None)
    # Redirect to login page
    return redirect(url_for('login'))
 
@@ -126,7 +125,8 @@ def proses_tambah():
     jabatan = request.form['jabatan']
 
     cur = db.cursor()
-    cur.execute("INSERT INTO pegawai (id_pegawai, nama, nik, alamat, jabatan) VALUES (%s, %s, %s, %s, %s)", (id_pegawai, nama, nik, alamat, jabatan))
+    cur.execute("INSERT INTO pegawai (id_pegawai, nama, nik, alamat, jabatan) VALUES (%s, %s, %s, %s, %s)", 
+                (id_pegawai, nama, nik, alamat, jabatan))
     db.commit()
     return redirect(url_for('admin'))
 
@@ -201,7 +201,8 @@ def proses_bukutambah():
     stok = int(request.form['stok'])
 
     cur = db.cursor()
-    cur.execute("INSERT INTO buku (id_buku, judul, kategori, stok) VALUES (%s, %s, %s, %s)", (id_buku, judul, kategori, stok))
+    cur.execute("INSERT INTO buku (id_buku, judul, kategori, stok) VALUES (%s, %s, %s, %s)", 
+                (id_buku, judul, kategori, stok))
     db.commit()
     return redirect(url_for('buku'))
 
@@ -268,7 +269,8 @@ def proses_membertambah():
     profesi = request.form['profesi']
 
     cur = db.cursor()
-    cur.execute("INSERT INTO member (id_member, nama, nik, alamat, profesi) VALUES (%s, %s, %s, %s, %s)", (id_member, nama, nik, alamat, profesi))
+    cur.execute("INSERT INTO member (id_member, nama, nik, alamat, profesi) VALUES (%s, %s, %s, %s, %s)", 
+                (id_member, nama, nik, alamat, profesi))
     db.commit()
     return redirect(url_for('member'))
 
@@ -357,7 +359,7 @@ def pinjamin():
 def pinjam_view(id_pinjam):
     if 'loggedin' in session:
         cur = db.cursor()
-        cur.execute('SELECT * FROM pinjam')
+        cur.execute('SELECT * FROM pinjam WHERE id_pinjam=%s', (id_pinjam,))
         pinjam = cur.fetchall()
         tanggal_pinjam = pinjam[0][3]
 
